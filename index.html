@@ -11,6 +11,9 @@
             margin: 0;
             padding: 0;
             background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
         header {
             background-color: #4CAF50;
@@ -18,10 +21,19 @@
             padding: 1rem;
             text-align: center;
         }
-        .container {
-            width: 80%;
-            margin: 0 auto;
-            padding: 2rem 0;
+        .main-container {
+            display: flex;
+            flex: 1;
+        }
+        .content {
+            width: 75%;
+            padding: 2rem;
+        }
+        .sidebar {
+            width: 25%;
+            background-color: #fff;
+            padding: 1rem;
+            border-left: 1px solid #ddd;
         }
         .post {
             background-color: #fff;
@@ -42,30 +54,66 @@
             background-color: #333;
             color: #fff;
         }
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .sidebar ul li {
+            margin-bottom: 1rem;
+        }
+        .sidebar ul li a {
+            text-decoration: none;
+            color: #4CAF50;
+        }
+        .sidebar ul li a:hover {
+            text-decoration: underline;
+        }
         @media (max-width: 768px) {
-            .container {
-                width: 90%;
+            .main-container {
+                flex-direction: column;
+            }
+            .content, .sidebar {
+                width: 100%;
             }
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Blog Saya</h1>
+        <h1>Blog KepoInData & AI</h1>
         <p>Selamat datang di blog saya. Temukan artikel-artikel menarik di sini!</p>
     </header>
     
-    <div class="container">
-        <article class="post">
-            <h2>Judul Artikel Pertama</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-        </article>
-        
-        <article class="post">
-            <h2>Judul Artikel Kedua</h2>
-            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        </article>
-        
-        <article class="post">
-            <h2>Judul Artikel Ketiga</h2>
-            <p>Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam vari
+    <div class="main-container">
+        <div class="content">
+            <article class="post">
+                <h2>Judul Artikel Pertama</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            </article>
+            
+            <article class="post">
+                <h2>Judul Artikel Kedua</h2>
+                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </article>
+            
+            <article class="post">
+                <h2>Judul Artikel Ketiga</h2>
+                <p>Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, ipsum sed scelerisque auctor, eros urna tincidunt nisi, eget imperdiet mi urna a erat. Aenean euismod justo nec erat aliquam, ac bibendum nisl euismod.</p>
+            </article>
+        </div>
+
+        <aside class="sidebar">
+            <h3>Daftar Artikel</h3>
+            <ul>
+                <li><a href="#artikel-pertama">Judul Artikel Pertama</a></li>
+                <li><a href="#artikel-kedua">Judul Artikel Kedua</a></li>
+                <li><a href="#artikel-ketiga">Judul Artikel Ketiga</a></li>
+            </ul>
+        </aside>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Blog Saya. Semua hak cipta dilindungi.</p>
+    </footer>
+</body>
+</html>
