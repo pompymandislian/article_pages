@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            color: #333;
+            color: #fff;
             margin: 0;
             padding: 0;
             background-color: #f4f4f4;
@@ -16,7 +16,7 @@
             min-height: 100vh;
         }
         header {
-            background-color: #4CAF50;
+            background-color: #000;
             color: #fff;
             padding: 1rem;
             text-align: center;
@@ -25,18 +25,54 @@
             display: flex;
             flex: 1;
         }
-        .content {
-            width: 75%;
-            padding: 2rem;
-        }
         .sidebar {
-            width: 25%;
-            background-color: #fff;
+            background-color: #000;
+            color: #fff;
+            width: 250px;
             padding: 1rem;
-            border-left: 1px solid #ddd;
+            position: fixed;
+            top: 0;
+            left: -250px;
+            height: 100%;
+            transition: left 0.3s ease;
+            overflow-y: auto;
+        }
+        .sidebar.open {
+            left: 0;
+        }
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .sidebar ul li {
+            margin-bottom: 1rem;
+        }
+        .sidebar ul li a {
+            text-decoration: none;
+            color: #4CAF50;
+        }
+        .sidebar ul li a:hover {
+            text-decoration: underline;
+        }
+        .toggle-btn {
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            background-color: #000;
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            z-index: 1000;
+        }
+        .content {
+            margin-left: 250px;
+            padding: 2rem;
+            width: calc(100% - 250px);
         }
         .post {
             background-color: #fff;
+            color: #333;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
             margin-bottom: 1.5rem;
@@ -54,26 +90,24 @@
             background-color: #333;
             color: #fff;
         }
-        .sidebar ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        .sidebar ul li {
-            margin-bottom: 1rem;
-        }
-        .sidebar ul li a {
-            text-decoration: none;
-            color: #4CAF50;
-        }
-        .sidebar ul li a:hover {
-            text-decoration: underline;
-        }
         @media (max-width: 768px) {
             .main-container {
                 flex-direction: column;
             }
-            .content, .sidebar {
+            .content {
+                margin-left: 0;
                 width: 100%;
+            }
+            .sidebar {
+                width: 100%;
+                left: -100%;
+                transition: left 0.3s ease;
+            }
+            .sidebar.open {
+                left: 0;
+            }
+            .toggle-btn {
+                display: block;
             }
         }
     </style>
@@ -84,36 +118,43 @@
         <p>Selamat datang di blog saya. Temukan artikel-artikel menarik di sini!</p>
     </header>
     
-    <div class="main-container">
-        <div class="content">
-            <article class="post">
-                <h2>Judul Artikel Pertama</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            </article>
-            
-            <article class="post">
-                <h2>Judul Artikel Kedua</h2>
-                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            </article>
-            
-            <article class="post">
-                <h2>Judul Artikel Ketiga</h2>
-                <p>Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, ipsum sed scelerisque auctor, eros urna tincidunt nisi, eget imperdiet mi urna a erat. Aenean euismod justo nec erat aliquam, ac bibendum nisl euismod.</p>
-            </article>
-        </div>
+    <button class="toggle-btn" onclick="toggleSidebar()">Menu</button>
 
-        <aside class="sidebar">
-            <h3>Daftar Artikel</h3>
-            <ul>
-                <li><a href="#artikel-pertama">Judul Artikel Pertama</a></li>
-                <li><a href="#artikel-kedua">Judul Artikel Kedua</a></li>
-                <li><a href="#artikel-ketiga">Judul Artikel Ketiga</a></li>
-            </ul>
-        </aside>
+    <aside class="sidebar" id="sidebar">
+        <h3>Daftar Artikel</h3>
+        <ul>
+            <li><a href="#artikel-pertama">Judul Artikel Pertama</a></li>
+            <li><a href="#artikel-kedua">Judul Artikel Kedua</a></li>
+            <li><a href="#artikel-ketiga">Judul Artikel Ketiga</a></li>
+        </ul>
+    </aside>
+
+    <div class="content">
+        <article class="post" id="artikel-pertama">
+            <h2>Judul Artikel Pertama</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        </article>
+        
+        <article class="post" id="artikel-kedua">
+            <h2>Judul Artikel Kedua</h2>
+            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </article>
+        
+        <article class="post" id="artikel-ketiga">
+            <h2>Judul Artikel Ketiga</h2>
+            <p>Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, ipsum sed scelerisque auctor, eros urna tincidunt nisi, eget imperdiet mi urna a erat. Aenean euismod justo nec erat aliquam, ac bibendum nisl euismod.</p>
+        </article>
     </div>
 
     <footer>
         <p>&copy; 2024 Blog Saya. Semua hak cipta dilindungi.</p>
     </footer>
+
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('open');
+        }
+    </script>
 </body>
 </html>
