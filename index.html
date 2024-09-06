@@ -24,6 +24,7 @@
         .main-container {
             display: flex;
             flex: 1;
+            margin-top: 1rem;
         }
         .sidebar {
             background-color: #000;
@@ -36,23 +37,10 @@
             height: 100%;
             transition: left 0.3s ease;
             overflow-y: auto;
+            z-index: 1000;
         }
         .sidebar.open {
             left: 0;
-        }
-        .sidebar ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        .sidebar ul li {
-            margin-bottom: 1rem;
-        }
-        .sidebar ul li a {
-            text-decoration: none;
-            color: #4CAF50;
-        }
-        .sidebar ul li a:hover {
-            text-decoration: underline;
         }
         .toggle-btn {
             position: fixed;
@@ -69,6 +57,7 @@
             margin-left: 250px;
             padding: 2rem;
             width: calc(100% - 250px);
+            background-color: #f4f4f4;
         }
         .post {
             background-color: #fff;
@@ -121,12 +110,7 @@
     <button class="toggle-btn" onclick="toggleSidebar()">Menu</button>
 
     <aside class="sidebar" id="sidebar">
-        <h3>Daftar Artikel</h3>
-        <ul>
-            <li><a href="#artikel-pertama">Judul Artikel Pertama</a></li>
-            <li><a href="#artikel-kedua">Judul Artikel Kedua</a></li>
-            <li><a href="#artikel-ketiga">Judul Artikel Ketiga</a></li>
-        </ul>
+        <!-- Sidebar kosong, akan diisi sesuai kebutuhan -->
     </aside>
 
     <div class="content">
